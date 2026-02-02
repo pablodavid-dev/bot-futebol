@@ -3,13 +3,10 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
-
-// libera acesso do GitHub Pages
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
-// rota dos jogos
 app.get("/jogos", async (req, res) => {
   try {
     const response = await axios.get(
@@ -29,7 +26,8 @@ app.get("/jogos", async (req, res) => {
 
     res.json(jogos);
   } catch (err) {
-    res.status(500).json({ erro: "Erro ao buscar jogos" });
+    console.log("Falha na API externa");
+    res.json([]); // comportamento correto
   }
 });
 
