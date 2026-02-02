@@ -26,12 +26,23 @@
   const API_URL = "https://bot-futebol-2.onrender.com/jogos";
 
   async function carregarJogos() {
+    const lista = document.getElementById('lista');
+    lista.innerHTML = '<p style="opacity:.7">Carregando jogos ao vivo...</p>';
+
     try {
       const res = await fetch(API_URL);
       const jogos = await res.json();
 
-      const lista = document.getElementById('lista');
       lista.innerHTML = '';
+
+      if (jogos.length === 0) {
+        lista.innerHTML = `
+          <div style="text-align:center; opacity:.7; padding:40px">
+            ⚠️ Nenhum jogo ao vivo no momento
+          </div>
+        `;
+        return;
+      }
 
       jogos.forEach(jogo => {
         let cor = 'verde';
@@ -53,7 +64,7 @@
         lista.appendChild(div);
       });
     } catch (err) {
-      console.error(err);
+      lista.innerHTML = '❌ Erro ao carregar jogos';
     }
   }
 
@@ -62,6 +73,8 @@
 </script>
 
 
+
 </body>
 </html>
+
 
