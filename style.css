@@ -1,0 +1,127 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BASE */
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(1200px 600px at top, #0f172a, #020617);
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+/* TOPO */
+.topo {
+  text-align: center;
+  padding: 40px 20px 25px;
+}
+
+.topo h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.topo .sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px 20px 80px;
+}
+
+/* CARD DO JOGO */
+.jogo {
+  background: linear-gradient(180deg, #020617, #020617);
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jogo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* TIMES */
+.times {
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.times small {
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* MINUTO */
+.minuto {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* CORES */
+.verde {
+  background: linear-gradient(135deg, #16a34a, #14532d);
+  color: #ecfdf5;
+}
+
+.amarelo {
+  background: linear-gradient(135deg, #facc15, #854d0e);
+  color: #1c1917;
+}
+
+.vermelho {
+  background: linear-gradient(135deg, #ef4444, #7f1d1d);
+  color: #fff;
+}
+
+/* RODAPÉ */
+.rodape {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #1e293b;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .jogo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .minuto {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bot Futebol Ao Vivo</title>
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <h1>⚽ Jogos ao Vivo</h1>
+    <span class="sub">Monitoramento em tempo real</span>
+  </header>
+
+  <main class="container">
+    <div id="lista"></div>
+  </main>
+
+  <footer class="rodape">
+    <span>Dados em tempo real • Atualiza a cada 30s</span>
+  </footer>
+
+  <script>
+    async function carregarJogos() {
+      const res = await fetch('/jogos');
+      const jogos = await res.json();
+
+      const lista = document.getElementById('lista');
+      lista.innerHTML = '';
+
+      jogos.forEach(jogo => {
+        let cor = 'verde';
+        if (jogo.minuto >= 60) cor = 'amarelo';
+        if (jogo.minuto >= 75) cor = 'vermelho';
+
+        const div = document.createElement('div');
+        div.className = 'jogo';
+
+        div.innerHTML = `
+          <div class="times">
+            <span>${jogo.casa}</span>
+            <small>x</small>
+            <span>${jogo.fora}</span>
+          </div>
+          <div class="minuto ${cor}">${jogo.minuto}'</div>
+        `;
+
+        lista.appendChild(div);
+      });
+    }
+
+    carregarJogos();
+    setInterval(carregarJogos, 30000);
+  </script>
+
+</body>
+</html>
