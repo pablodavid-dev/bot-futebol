@@ -1,15 +1,19 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 
 const app = express();
 
-// porta correta para Render / nuvem
+// libera acesso do front
+app.use(cors());
+
+// porta correta para nuvem
 const PORT = process.env.PORT || 3000;
 
-// servir arquivos estáticos (index.html, css, etc)
+// arquivos estáticos (opcional)
 app.use(express.static(__dirname));
 
-// rota que devolve os jogos ao vivo em JSON
+// rota dos jogos
 app.get("/jogos", async (req, res) => {
   try {
     const response = await axios.get(
@@ -34,7 +38,7 @@ app.get("/jogos", async (req, res) => {
   }
 });
 
-// sobe o servidor (JEITO CERTO PRA NUVEM)
+// start correto
 app.listen(PORT, () => {
   console.log("Bot rodando na porta " + PORT);
 });
