@@ -4,14 +4,10 @@ const cors = require("cors");
 
 const app = express();
 
-// libera acesso do front
+// libera acesso do GitHub Pages
 app.use(cors());
 
-// porta correta para nuvem
 const PORT = process.env.PORT || 3000;
-
-// arquivos estáticos (opcional)
-app.use(express.static(__dirname));
 
 // rota dos jogos
 app.get("/jogos", async (req, res) => {
@@ -33,12 +29,10 @@ app.get("/jogos", async (req, res) => {
 
     res.json(jogos);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ erro: "Erro ao buscar jogos" });
   }
 });
 
-// start correto
 app.listen(PORT, () => {
   console.log("Bot rodando na porta " + PORT);
 });
