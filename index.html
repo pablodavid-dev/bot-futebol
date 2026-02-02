@@ -22,9 +22,12 @@
     <span>Dados em tempo real • Atualiza a cada 30s</span>
   </footer>
 
-  <script>
-    async function carregarJogos() {
-      const res = await fetch('/jogos');
+<script>
+  const API_URL = "https://bot-futebol-2.onrender.com/jogos";
+
+  async function carregarJogos() {
+    try {
+      const res = await fetch(API_URL);
       const jogos = await res.json();
 
       const lista = document.getElementById('lista');
@@ -49,11 +52,16 @@
 
         lista.appendChild(div);
       });
+    } catch (err) {
+      console.error(err);
     }
+  }
 
-    carregarJogos();
-    setInterval(carregarJogos, 30000);
-  </script>
+  carregarJogos();
+  setInterval(carregarJogos, 30000);
+</script>
+
 
 </body>
 </html>
+
